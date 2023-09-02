@@ -1,18 +1,22 @@
 class Solution {
     public int findDuplicate(int[] nums) {
+        // Linked List Cycle Method
         int n = nums.length;
-        int freq[] = new int[n+1];
+        int slow = nums[0];
+        int fast = nums[0];
 
-        for(int i=0;i<n;i++){
-            freq[nums[i]]++;
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while(slow != fast);
+
+        fast = nums[0];
+
+        while(fast != slow){
+            slow = nums[slow];
+            fast = nums[fast];
         }
 
-        for(int i=0;i<freq.length;i++){
-            if(freq[i] > 1){
-                return i;
-            }
-        }
-        return -1;
-
+        return fast;
     }
 }
