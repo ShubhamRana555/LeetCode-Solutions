@@ -1,29 +1,31 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        if(nums.length == 0 || nums[0] > target || nums[nums.length - 1] < target)
-            return new int[]{ -1, -1};
+        int first = findFirstOrLast(nums, target, true);
+        int last = findFirstOrLast(nums, target, false);
         
-        
-        int minIdx = binarySearch(nums, target);
-        
-        if(nums[minIdx+1] != target)
-            return new int[]{ -1, -1};
-        
-        int maxIdx = binarySearch(nums, target+1);
-        return new int[]{minIdx+1, maxIdx};
+        return new int[] {first, last};
     }
-    public int binarySearch(int[] nums, int target){ // find >= target i.e < target
-        int left = 0; 
-        int right = nums.length - 1;
-        while(left <= right){
-            int mid = left + (right - left)/2;
-            if(nums[mid] < target){
-                left = mid + 1;
-            }
-            else if(nums[mid] >= target){
-                right = mid - 1;
+    
+    private int findFirstOrLast(int[] nums, int target, boolean isFirst) {
+        int index = -1;
+        int low = 0;
+        int high = nums.length - 1;
+        
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                index = mid;
+                if (isFirst)
+                    high = mid - 1; // Continue searching on the left side for the first occurrence.
+                else
+                    low = mid + 1; // Continue searching on the right side for the last occurrence.
+            } else if (nums[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
-        return right;
+        
+        return index;
     }
 }
