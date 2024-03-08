@@ -2,7 +2,7 @@ class Solution {
     public int rob(int[] nums) {
         int n = nums.length;
         // arraylist for helper function to eliminate TLE
-        ArrayList<Integer> res = new ArrayList<>(Collections.nCopies(n,-1));
+        ArrayList<Integer> res = new ArrayList<>(Collections.nCopies(n-1,-1));
         
         if(nums.length < 2){
             return nums[0];
