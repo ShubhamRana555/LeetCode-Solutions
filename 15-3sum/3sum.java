@@ -1,37 +1,34 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        Set<List<Integer>> result = new HashSet<>();
-
-        if (nums==null && nums.length<3){
+        if(nums==null || nums.length < 3){
             return new ArrayList<>();
         }
+        Set<List<Integer>> res = new HashSet<>();
+        int n = nums.length;
 
         Arrays.sort(nums);
-        for(int i=0; i<nums.length-2; i++){
-            int left = i+1;
-            int right = nums.length-1;
-
-            while(left < right){
-                int sum = nums[i]+nums[left]+nums[right];
+        for(int i=0; i<n-2; i++){
+            int start = i + 1;
+            int end = n - 1;
+            while(start < end){
+                int sum = nums[i]+nums[start]+nums[end];
                 if(sum == 0){
-                    // List<Integer> arr = new ArrayList<>();
-
-                    // arr.add(nums[i]);
-                    // arr.add(nums[left]);
-                    // arr.add(nums[right]);
-                    // result.add(arr); --> 1st method 
-                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
-                    left++;
-                    right--;
+                    ArrayList<Integer> arr = new ArrayList<>();
+                    arr.add(nums[i]);
+                    arr.add(nums[start]);
+                    arr.add(nums[end]);
+                    res.add(arr); 
+                    start++;
+                    end--;   
                 }
                 else if(sum < 0){
-                    left++;
+                    start++;
                 }
-                else right--;
-
+                else{
+                    end--;
+                }
             }
         }
-        return new ArrayList<>(result);
-
+        return new ArrayList<>(res);
     }
 }
