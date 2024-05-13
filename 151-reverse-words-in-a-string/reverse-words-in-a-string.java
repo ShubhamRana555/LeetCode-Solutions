@@ -1,7 +1,7 @@
 class Solution {
     public String reverseWords(String s) {
         // Remove leading and trailing whitespaces and split the string by one or more whitespaces
-        String[] words = s.trim().split("\\s+");
+        String[] words = s.trim().split("\s+");
         
         // Reverse the order of words
         int i = 0, j = words.length - 1;
@@ -17,4 +17,3 @@ class Solution {
         return String.join(" ", words);
     }
 }
-    
