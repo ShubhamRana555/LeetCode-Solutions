@@ -17,9 +17,14 @@ class Solution {
             }
         }
         int n = str1.length();
-        for(int i=0;i<n/2;i++){
-            if(str1.charAt(i) != str1.charAt(n-i-1)){
+        int start = 0, end = n-1;
+        while(start<=end){
+            if(str1.charAt(start) != str1.charAt(end)){
                 return false;
+            }
+            else{
+                start++;
+                end--;
             }
         }
         return true;
