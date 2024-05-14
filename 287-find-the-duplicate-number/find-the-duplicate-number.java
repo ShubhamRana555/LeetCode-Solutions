@@ -1,22 +1,23 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-        // Linked List Cycle Method
-        int n = nums.length;
-        int slow = nums[0];
-        int fast = nums[0];
+        HashMap<Integer, Integer> map = new HashMap<>();
 
-        do{
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-        }while(slow != fast);
-
-        fast = nums[0];
-
-        while(fast != slow){
-            slow = nums[slow];
-            fast = nums[fast];
+        for(int i=0; i<nums.length; i++){
+            if(map.containsKey(nums[i])){
+                map.put(nums[i], map.get(nums[i])+1);
+            }
+            else{
+                map.put(nums[i], 1);
+            }
         }
 
-        return fast;
+        Set<Integer> keySet = map.keySet();
+        for(Integer key : keySet){
+            if(map.get(key) > 1){
+                return key;
+            }
+        }
+
+        return -1;
     }
 }
