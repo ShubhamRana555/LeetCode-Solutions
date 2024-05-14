@@ -18,7 +18,7 @@ class Solution {
                     max = Math.max(max, mountainLength);
 
                 }
-                // i = right; // move i to the right of mountain
+                i = right; // move i to the right of mountain
             }
         }
         return max;
