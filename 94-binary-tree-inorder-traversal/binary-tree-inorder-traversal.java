@@ -7,9 +7,7 @@
  *     TreeNode() {}
  *     TreeNode(int val) { this.val = val; }
  *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         
-
-           this.val = val;
+ *         this.val = val;
  *         this.left = left;
  *         this.right = right;
  *     }
@@ -17,16 +15,17 @@
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        helper(root,res);
-        return res;
+        List<Integer> arr = new ArrayList<>();
+
+        inOrder(root, arr);
+        return arr;
     }
-    public void helper(TreeNode root,List<Integer> res){
-        if(root==null){
-            return;
+    private void inOrder(TreeNode root, List<Integer> arr){
+        if(root == null){
+            return ;
         }
-        helper(root.left,res);
-        res.add(root.val);
-        helper(root.right,res);
+        inOrder(root.left, arr);
+        arr.add(root.val);
+        inOrder(root.right, arr);
     }
 }
