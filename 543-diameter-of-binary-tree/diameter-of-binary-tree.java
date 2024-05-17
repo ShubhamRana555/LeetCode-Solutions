@@ -18,19 +18,24 @@ class Solution {
         if(root == null){
             return 0;
         }
+
         int leftDiam = diameterOfBinaryTree(root.left);
         int leftHeight = height(root.left);
         int rightDiam = diameterOfBinaryTree(root.right);
         int rightHeight = height(root.right);
-        int selfDiam = leftHeight + rightHeight;
-        return Math.max(selfDiam, Math.max(leftDiam,rightDiam));
+
+        int Diam = leftHeight + rightHeight ;
+        return Math.max(Math.max(leftDiam, rightDiam), Diam);
+
     }
     private int height(TreeNode root){
         if(root == null){
             return 0;
         }
-        int left = height(root.left);
-        int right = height(root.right);
-        return Math.max(left,right) + 1;
+        
+        int left = height(root.left) +1;
+        int right = height(root.right) +1;
+
+        return Math.max(left, right);
     }
 }
